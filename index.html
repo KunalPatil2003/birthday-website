@@ -480,19 +480,34 @@ controlslist="nodownload noplaybackrate">
 <script>
 
 /* MUSIC FADE IN */
-document.addEventListener("DOMContentLoaded",()=>{
-  let m = document.getElementById("music");
-  m.volume = 0;
-  m.play().catch(()=>{});
+/* MUSIC FADE IN */
+document.addEventListener("DOMContentLoaded", () => {
 
-  let v = 0;
-  let fade = setInterval(()=>{
-    if(v < 1){
-      v += 0.03;
-      m.volume = v;
-    } else clearInterval(fade);
-  },200);
-};
+    const m = document.getElementById("music");
+
+    m.volume = 0;
+
+    m.play().catch(() => {});
+
+    let v = 0;
+
+    const fade = setInterval(() => {
+
+        if (v < 1) {
+
+            v += 0.03;
+
+            m.volume = Math.min(v, 1);
+
+        } else {
+
+            clearInterval(fade);
+
+        }
+
+    }, 200);
+
+});
 
 window.addEventListener("resize",()=>{
 
