@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A Love Story ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  background:black;
+  font-family:Arial;
+  color:white;
+}
+/* GIF Overlay */
+
+#gifOverlay{
+
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.95);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+    z-index:9999;
+
+}
+
+/* Heading */
+
+#yesMessage{
+
+    font-size:48px;
+    color:white;
+
+    margin-bottom:10px;
+
+    text-align:center;
+
+    opacity:0;
+
+    animation:fadeDown 1s forwards;
+
+}
+
+#yesMessage span{
+
+    color:#ff4d6d;
+
+    text-shadow:
+        0 0 20px #ff4d6d,
+        0 0 40px #ff4d6d,
+        0 0 60px #ff4d6d;
+
+}
+
+/* Subtitle */
+
+#subMessage{
+
+    font-size:22px;
+
+    color:#ffd1dc;
+
+    margin-bottom:35px;
+
+    text-align:center;
+
+    opacity:0;
+
+    animation:fadeDown 1s .6s forwards;
+
+}
+
+/* Video */
+
+#loveVideo{
+
+    width:420px;
+
+    max-width:90%;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 0 35px #ff4d6d,
+        0 0 70px #ff4d6d;
+
+    animation:zoom 2s infinite alternate;
+
+}
+
+/* Continue Button */
+
+#nextBtn{
+
+    margin-top:35px;
+
+    padding:14px 35px;
+
+    border:none;
+
+    border-radius:40px;
+
+    background:#ff4d6d;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+#nextBtn:hover{
+
+    transform:scale(1.08);
+
+}
+
+@keyframes zoom{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.04);
+    }
+
+}
+
+@keyframes fadeDown{
+
+    from{
+
+        opacity:0;
+        transform:translateY(-40px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+.message-container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    margin-top:25px;
+}
+
+#msg{
+    width:600px;
+    max-width:90%;
+    min-height:40px;
+    text-align:center;
+    font-size:22px;
+    color:#ffd1dc;
+    font-weight:bold;
+    transition:0.4s;
+}
+.intro h2{
+    color:#ff7aa2;
+    font-size:1.2rem;
+    letter-spacing:3px;
+    margin-bottom:20px;
+}
+
+#counter{
+    font-size:2.5rem;
+    color:#fff;
+    line-height:1.5;
+    text-shadow:0 0 20px #ff4d6d;
+}
+
+.subtitle{
+    margin-top:20px;
+    color:#ffd1dc;
+    font-size:18px;
+    width:80%;
+    max-width:650px;
+    line-height:1.8;
+}
+
+/* CINEMATIC INTRO */
+.intro{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  animation: fadeOut 15s forwards;
+  z-index:10;
+}
+
+.intro h1{
+  font-size:1.8rem;
+  letter-spacing:2px;
+  opacity:0;
+  animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(1.2);}
+  to{opacity:1; transform:scale(1);}
+}
+
+@keyframes fadeOut{
+  0%,70%{opacity:1;}
+  100%{opacity:0; visibility:hidden;}
+}
+
+/* MAIN */
+.main{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    opacity:0;
+    animation:show 15.5s forwards;
+    position:relative;
+}
+
+.proposal{
+
+    font-size:4rem;
+    color:#ff4d6d;
+    margin-bottom:20px;
+    text-shadow:
+        0 0 15px #ff4d6d,
+        0 0 30px #ff4d6d,
+        0 0 50px #ff4d6d;
+
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.05);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+.proposalText{
+
+    font-size:22px;
+    color:#ffe4ec;
+    line-height:1.8;
+    margin-bottom:40px;
+}
+
+.buttons{
+
+    display:flex;
+    gap:40px;
+    justify-content:center;
+    align-items:center;
+}
+
+.btn{
+
+    padding:15px 35px;
+    font-size:20px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#yes{
+
+    background:#ff4d6d;
+    color:white;
+    box-shadow:0 0 25px #ff4d6d;
+
+}
+
+#yes:hover{
+
+    transform:scale(1.1);
+
+}
+
+#no{
+
+    background:#333;
+    color:white;
+    position:fixed;
+    left:65%;
+    top:72%;
+}
+
+@keyframes show{
+  0%,70%{opacity:0;}
+  100%{opacity:1;}
+}
+
+h2{
+  color:#ff4d6d;
+}
+
+/* BUTTONS */
+.btn{
+  padding:12px 25px;
+  margin:10px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:1rem;
+}
+
+#yes{background:#ff4d6d;color:white;}
+#no{background:#333;color:white;position:absolute;}
+
+/* message */
+#msg{
+  margin-top:20px;
+  color:#ffd1dc;
+  max-width:80%;
+}
+
+/* FIREWORKS */
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  pointer-events:none;
+}
+
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+
+@media (max-width:768px){
+
+    h2{
+        font-size:26px;
+        padding:0 20px;
+        line-height:1.5;
+    }
+
+    #counter{
+        font-size:34px;
+    }
+
+    .subtitle{
+        font-size:16px;
+        width:90%;
+    }
+
+    #yesMessage{
+        font-size:32px;
+        padding:0 20px;
+    }
+
+    #subMessage{
+        font-size:18px;
+        width:90%;
+    }
+
+    #loveVideo{
+        width:90%;
+    }
+
+    #nextBtn{
+
+        width:85%;
+
+        max-width:320px;
+
+        font-size:20px;
+
+    }
+
+    .buttons{
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="intro">
+
+    <h2>✨ Every beautiful story has a beginning... ✨</h2>
+
+    <h1 id="counter"></h1>
+
+    <p class="subtitle">
+        Since <strong>1 July 2004</strong>,
+        the universe has been creating the most beautiful soul I've ever known. ❤️
+    </p>
+
+</div>
+
+<div class="main">
+  <h2>Among billions of stars, I found you. Will you shine beside me forever? ❤️</h2>
+
+   <div class="buttons">
+
+    <button class="btn" id="yes">
+        💍 Yes, Forever ❤️
+    </button>
+
+    <button class="btn" id="no">
+        No
+    </button>
+
+</div>
+
+<div class="message-container">
+    <div id="msg"></div>
+</div>
+</div>
+<div id="gifOverlay">
+
+    <h1 id="yesMessage">
+        I knew that you would say <span>YES</span> ❤️
+    </h1>
+
+    <p id="subMessage">
+        Because there are connections so profound that even fate cannot keep them apart...
+    </p>
+
+    <video
+id="loveVideo"
+autoplay
+muted
+playsinline
+loop
+disablepictureinpicture
+controlslist="nodownload noplaybackrate">
+        <source src="cat.mp4" type="video/mp4">
+    </video>
+
+    <button id="nextBtn">
+        Continue
+    </button>
+
+</div>
+<canvas id="fx"></canvas>
+
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* MUSIC FADE IN */
+document.addEventListener("DOMContentLoaded",()=>{
+  let m = document.getElementById("music");
+  m.volume = 0;
+  m.play().catch(()=>{});
+
+  let v = 0;
+  let fade = setInterval(()=>{
+    if(v < 1){
+      v += 0.03;
+      m.volume = v;
+    } else clearInterval(fade);
+  },200);
+};
+
+window.addEventListener("resize",()=>{
+
+    c.width=window.innerWidth;
+    c.height=window.innerHeight;
+
+});
+/* NO BUTTON */
+const no = document.getElementById("no");
+const msg = document.getElementById("msg");
+
+const lines = [
+"You are the quiet certainty in a world that never promised one.",
+"Loving you feels less like a choice and more like remembering who I was meant to become.",
+"I'd rather spend one lifetime finding you than an eternity forgetting you.",
+"The stars may forget our names, but my heart never will.",
+"If home is where the heart rests, then every road has already led me to you.",
+"I don't fear the end of time. I only fear a future where you're not in it.",
+"Your existence turned all my ordinary days into something worth remembering.",
+"You are the poem I never learned to write, yet somehow lived."
+];
+
+let i=0;
+
+no.onmouseover = move;
+no.onclick = move;
+
+function move(){
+
+    let x;
+    let y;
+
+    do{
+
+        const padding=30;
+
+x = padding +
+Math.random()*(window.innerWidth-170);
+
+y = padding +
+Math.random()*(window.innerHeight-120);
+
+    }
+
+    while(
+
+        x > window.innerWidth*0.30 &&
+        x < window.innerWidth*0.70 &&
+        y > window.innerHeight*0.20 &&
+        y < window.innerHeight*0.80
+
+    );
+
+    no.style.left = x + "px";
+    no.style.top = y + "px";
+
+    msg.innerHTML =
+        "💖 " + lines[i % lines.length];
+
+    i++;
+
+}
+
+/* YES -> fireworks + redirect */
+document.getElementById("yes").onclick = ()=>{
+
+    fire();
+
+    const overlay = document.getElementById("gifOverlay");
+
+    overlay.style.display = "flex";
+
+    const video = document.getElementById("loveVideo");
+
+    video.currentTime = 0;
+
+    video.play();
+
+};
+
+document.getElementById("nextBtn").onclick = ()=>{
+
+    document.getElementById("loveVideo").pause();
+
+    window.location.href = "birthday.html";
+
+};
+
+/* FIREWORKS (smooth particles) */
+const c = document.getElementById("fx");
+const ctx = c.getContext("2d");
+
+c.width = window.innerWidth;
+c.height = window.innerHeight;
+
+let particles = [];
+
+function Particle(){
+  this.x = window.innerWidth/2;
+  this.y = window.innerHeight/2;
+  this.vx = (Math.random()-0.5)*8;
+  this.vy = (Math.random()-0.5)*8;
+  this.life = 100;
+}
+
+function fire(){
+  for(let i=0;i<350;i++){
+    particles.push(new Particle());
+  }
+  animate();
+}
+
+function animate(){
+  ctx.fillStyle="rgba(0,0,0,0.2)";
+  ctx.fillRect(0,0,c.width,c.height);
+
+  particles.forEach((p,i)=>{
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life--;
+
+    const colors=[
+"#ff4d6d",
+"#ffd700",
+"#ff9ecb",
+"#ffffff"
+];
+
+ctx.fillStyle=
+colors[Math.floor(Math.random()*colors.length)];
+    ctx.fillRect(p.x,p.y,2,2);
+
+    if(p.life<=0) particles.splice(i,1);
+  });
+
+  if(particles.length>0){
+    requestAnimationFrame(animate);
+  }
+}
+function updateCounter(){
+
+    // Birthday (1 July 2004 00:00)
+    const start = new Date("2004-07-01T00:00:00");
+
+    const now = new Date();
+
+    const diff = now - start;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+
+    const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
+
+    document.getElementById("counter").innerHTML =
+
+        days + " Days ❤️<br>" +
+        hours + " Hours ❤️<br>" +
+        minutes + " Minutes";
+
+}
+
+updateCounter();
+
+setInterval(updateCounter,60000);
+</script>
+
+</body>
+</html>
