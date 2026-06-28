@@ -391,40 +391,46 @@ function updateSlider(){
 
     dots.forEach(dot => dot.classList.remove("active"));
     dots[index].classList.add("active");
-	if(index === 4){
 
-    showQuotes();
+    const song = document.getElementById("music");
 
-    const song = document.getElementById("loveSong");
+    if(index === 4){
 
-    song.volume = 0.2;
+        showQuotes();
 
-    song.play().catch(()=>{});
+        if(song){
 
-    // Smooth fade in
-    let fade = setInterval(()=>{
+            song.volume = 0.2;
 
-        if(song.volume < 1){
+            song.play().catch(()=>{});
 
-            song.volume += 0.05;
+            let fade = setInterval(()=>{
 
-        }else{
+                if(song.volume < 1){
 
-            clearInterval(fade);
+                    song.volume = Math.min(song.volume + 0.05, 1);
+
+                }else{
+
+                    clearInterval(fade);
+
+                }
+
+            },300);
 
         }
 
-    },300);
+    }else{
 
-}else{
+        if(song){
 
-    const song = document.getElementById("loveSong");
+            song.pause();
 
-    song.pause();
+            song.currentTime = 0;
 
-    song.currentTime = 0;
+        }
 
-}
+    }
 
 }
 
